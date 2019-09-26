@@ -1,5 +1,7 @@
 import React from 'react';
 import './Recipes.css'
+import ReactDOM from 'react-dom';
+import Button from '@material-ui/core/Button';
 
 interface IRecipe {
     id: number,
@@ -25,9 +27,13 @@ function Recipe(props: IRecipeProps) {
             <div className="listItemTitle"> {props.recipe.name}</div>
             <img src={props.recipe.img} className="listItemImg"/>
             <div className="listItemDescription"> {props.recipe.recipyDesctiption}</div>
+            <Button variant="contained" color="primary">
+                Edit
+            </Button>
         </div>
     )
 }
+
 
 class Recipes extends React.Component {
 
