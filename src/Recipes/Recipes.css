@@ -1,0 +1,14 @@
+.Recipes {
+    background-color: #282c34;
+    font-family: "DIN Alternate";
+}
+
+.Selected {
+    background-color: #61dafb;
+    color: deeppink;
+}
+
+.listItemTitle{
+    color: bisque;
+    font-size: large;
+}
