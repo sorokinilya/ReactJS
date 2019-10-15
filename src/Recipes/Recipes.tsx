@@ -2,6 +2,7 @@ import React from 'react';
 import './Recipes.css'
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
+import {StorageService} from '../Business/StorageService';
 
 interface IRecipe {
     id: number,
@@ -70,6 +71,7 @@ class Recipes extends React.Component {
                 recipyDesctiption: "According to the classic recipe, holubtsi is cooked from boiled cabbage, where you take every other leaf to make a new roll filled with boiled rice and meat. A variation of the dish is to use boiled vine leaves for the rolls. The rice can also be substituted with the other cereals, mushrooms, Korean carrots, etc. Classic holubtsi can be found in many restaurants in Ukraine and on banquet menus too."
             }]
     }
+    
 
      handleSelect(id: number) {
         let recipes = this.state.recipes.concat()
