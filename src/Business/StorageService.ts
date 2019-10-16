@@ -1,6 +1,7 @@
 
 export const LOCAL_STORAGE_KEYS = {
     RECIPES: 'recipe',
+    DEMO: 'demo'
 };
 
 export interface IStorageRecipe {
@@ -12,8 +13,21 @@ export interface IStorageRecipe {
 }
 
 export class StorageService {
+
+    private  recopies: IStorageRecipe[] = [];
+
     constructor() {
-        if (true) {
+
+        const items  = localStorage.getItem(LOCAL_STORAGE_KEYS.RECIPES);
+        if (items) {
+            const values = JSON.parse(items);
+            this.recopies = values;
+        } else {
+            this.recopies = [];
+        }
+
+        if (this.showDemo()) {
+            this.setShowDemo(false);
             const items: IStorageRecipe[] = [{
                 id: 1,
                 name: "Borscht",
@@ -42,14 +56,28 @@ export class StorageService {
 
 
     addRecipe(recipe: IStorageRecipe) {
-        localStorage.setItem(LOCAL_STORAGE_KEYS.RECIPES, JSON.stringify(recipe));
+        this.recopies.push(recipe);
+        localStorage.setItem(LOCAL_STORAGE_KEYS.RECIPES, JSON.stringify(this.recopies));
     }
 
     getRecipes(): IStorageRecipe[] {
-        const items  = localStorage.getItem(LOCAL_STORAGE_KEYS.RECIPES);
-        if (items) {
-            return JSON.parse(items);
-        }
-        return [];
+        return this.recopies
     }
+
+    showDemo(): boolean {
+        const item = localStorage.getItem(LOCAL_STORAGE_KEYS.DEMO);
+        if (item) {
+            return JSON.parse(item) === true
+        }
+        return true
+    }
+
+    setShowDemo(show: boolean) {
+        localStorage.setItem(LOCAL_STORAGE_KEYS.DEMO, JSON.stringify(show));
+    }
+
 }
+
+
+const storaService = new StorageService();
+export default storaService

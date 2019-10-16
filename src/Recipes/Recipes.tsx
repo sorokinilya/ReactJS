@@ -2,7 +2,7 @@ import React from 'react';
 import './Recipes.css'
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
-import {StorageService} from '../Business/StorageService';
+import storaService, {StorageService} from '../Business/StorageService';
 
 interface IRecipe {
     id: number,
@@ -47,31 +47,42 @@ class Recipes extends React.Component {
     state = {
         searching: false,
         filter: '',
-        recipes: [{
-            id: 1,
-            isSelected: false,
-            name: "Borscht",
-            price: 10,
-            img: "https://gotovim-doma.ru/images/recipe/0/0a/00ad9d3b1ff86a92ce5935bc47a1bdee_l.jpg",
-            recipyDesctiption: "Borscht is a traditional Ukrainian beet and cabbage soup which is very popular in many Central and Eastern European cuisines. Variations of this dish can be different not only from country to country, but also from one Ukrainian region to another. It is also said that every Ukrainian family has original borscht recipe of its own."
-        }, {
-            id: 2,
-            isSelected: false,
-            name: "Varenyky",
-            price: 20,
-            img: "https://chefspencil.com/wp-content/uploads/4-22.jpg",
-            recipyDesctiption: "The preparation process for varenyky or pirohi is time-consuming. However, this is probably the most unpretentious recipe in terms of filling. If you get the chance to visit a Ukrainian village or a food festival in the city, you will definitely have an opportunity to try out varenyky with the most incredible fillings – from the basic cottage cheese, mashed potatoes or sauerkraut to the more unique like olives, pumpkin, nettle or strawberries."
-        },
-            {
-                id: 3,
-                isSelected: false,
-                name: "Holubtsi",
-                price: 20,
-                img: "https://panukraine.eu/uploads/abouts/shutterstock_558849211-800x533-88542.jpg",
-                recipyDesctiption: "According to the classic recipe, holubtsi is cooked from boiled cabbage, where you take every other leaf to make a new roll filled with boiled rice and meat. A variation of the dish is to use boiled vine leaves for the rolls. The rice can also be substituted with the other cereals, mushrooms, Korean carrots, etc. Classic holubtsi can be found in many restaurants in Ukraine and on banquet menus too."
-            }]
+         recipes: storaService.getRecipes().map( obj => {
+             return {
+                 id: obj.id,
+                 isSelected: false,
+                 name: obj.name,
+                 price: obj.price,
+                 img: obj.img,
+                 recipyDesctiption: obj.recipyDesctiption
+             };
+         })
+
+             //[{
+        //     id: 1,
+        //     isSelected: false,
+        //     name: "Borscht",
+        //     price: 10,
+        //     img: "https://gotovim-doma.ru/images/recipe/0/0a/00ad9d3b1ff86a92ce5935bc47a1bdee_l.jpg",
+        //     recipyDesctiption: "Borscht is a traditional Ukrainian beet and cabbage soup which is very popular in many Central and Eastern European cuisines. Variations of this dish can be different not only from country to country, but also from one Ukrainian region to another. It is also said that every Ukrainian family has original borscht recipe of its own."
+        // }, {
+        //     id: 2,
+        //     isSelected: false,
+        //     name: "Varenyky",
+        //     price: 20,
+        //     img: "https://chefspencil.com/wp-content/uploads/4-22.jpg",
+        //     recipyDesctiption: "The preparation process for varenyky or pirohi is time-consuming. However, this is probably the most unpretentious recipe in terms of filling. If you get the chance to visit a Ukrainian village or a food festival in the city, you will definitely have an opportunity to try out varenyky with the most incredible fillings – from the basic cottage cheese, mashed potatoes or sauerkraut to the more unique like olives, pumpkin, nettle or strawberries."
+        // },
+        //     {
+        //         id: 3,
+        //         isSelected: false,
+        //         name: "Holubtsi",
+        //         price: 20,
+        //         img: "https://panukraine.eu/uploads/abouts/shutterstock_558849211-800x533-88542.jpg",
+        //         recipyDesctiption: "According to the classic recipe, holubtsi is cooked from boiled cabbage, where you take every other leaf to make a new roll filled with boiled rice and meat. A variation of the dish is to use boiled vine leaves for the rolls. The rice can also be substituted with the other cereals, mushrooms, Korean carrots, etc. Classic holubtsi can be found in many restaurants in Ukraine and on banquet menus too."
+        //     }]
     }
-    
+
 
      handleSelect(id: number) {
         let recipes = this.state.recipes.concat()
