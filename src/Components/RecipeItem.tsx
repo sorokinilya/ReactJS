@@ -9,15 +9,15 @@ import {UpdateSearchParam} from "./SearchItem";
 
 interface SearchProps {
     items: ListItem[]
+    selectAction: (item: ListItem) => void
+    editAction: (item: ListItem) => void
 }
 
-export const RecipeList: React.FC<SearchProps> = ({
-    items
-}) => {
+export const RecipeList: React.FC<SearchProps> = ({ items, selectAction,  editAction }) => {
     return (
       <div> {
           items.map( (item) =>
-              <div>{ RecipeItem(item, ()=>{}, () => {} ) } </div>
+              <div>{ RecipeItem(item, ()=>{ selectAction( item )  }, () => { editAction(item ) } ) } </div>
           )
       }
       </div>

@@ -1,4 +1,4 @@
-import { Middleware, Action, MiddlewareAPI, Dispatch } from "redux";
+import { Middleware, MiddlewareAPI, Dispatch } from "redux";
 
 export const filterMiddleware: Middleware = ({ getState }: MiddlewareAPI) => (
     next: Dispatch
