@@ -1,11 +1,6 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
-import { connect } from "react-redux";
-import { selectItem } from "../Redux/List/actions";
-import { editItem } from "../Redux/List/actions";
 import { ListItem } from "../Redux/List/types";
-import {UpdateSearchParam} from "./SearchItem";
-
 
 interface SearchProps {
     items: ListItem[]

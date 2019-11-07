@@ -37,12 +37,14 @@ export function listReducer(state = initialState, action: ListActionTypes | Filt
             })
             if (action.payload) {
                 return {
+                    ...state,
                     recipes: items.filter(item => {
                         return item.name.includes(action.payload) || item.recipyDesctiption.includes(action.payload)
                     })
                 }
             }
             return {
+                ...state,
                 recipes: items
             }
         }

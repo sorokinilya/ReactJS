@@ -1,16 +1,15 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
+import {InputParam} from "../Common/constants";
 
 
 interface SearchProps {
     text: string
     buttonText: string
-    updated:(text: UpdateSearchParam) => void
+    updated:(text: InputParam) => void
     search:() => void
     add:() => void
 }
-
-export type UpdateSearchParam = React.SyntheticEvent<{ value: string }>;
 
 export const SearchInterface: React.FC<SearchProps> = ({
     text,

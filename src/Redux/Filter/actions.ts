@@ -1,7 +1,7 @@
 import { SEARCH_ACTION, UPDATE_TEXT, ADD_ACTION, FilterAction } from "./types";
-import {UpdateSearchParam} from "../../App";
+import {InputParam} from "../../Common/constants";
 
-export function updateText(param: UpdateSearchParam): FilterAction {
+export function updateText(param: InputParam): FilterAction {
     return {
         type: UPDATE_TEXT,
         payload: param.currentTarget.value
@@ -10,7 +10,7 @@ export function updateText(param: UpdateSearchParam): FilterAction {
 
 export function searchAction(): FilterAction {
     return {
-        type: SEARCH_ACTION,
+        type: SEARCH_ACTION
     }
 }
 
