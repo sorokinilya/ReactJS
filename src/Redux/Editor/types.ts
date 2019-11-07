@@ -8,7 +8,7 @@ export interface EditorState {
     id: number
     name: string
     price: number
-   // img: string
+    img: string
     recipyDesctiption: string
 }
 

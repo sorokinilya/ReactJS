@@ -42,11 +42,12 @@ class App extends React.Component<AppProps> {
                 <EditorItem isActive={ this.props.editor.isActive }
                             name={ this.props.editor.name }
                             price={ this.props.editor.price }
+                            img={ this.props.editor.img}
                             recipyDesctiption={ this.props.editor.recipyDesctiption}
                             updatedNameAction={ this.props.nameUpdatedAction }
                             updatedDescriptionAction={ this.props.descriptionUpdatedAction }
                             saveAction={ this.props.saveAction }
-                            closeAction={this.props.closeAction }/>
+                            closeAction={this.props.closeAction } />
 
                   <RecipeList items={this.props.list.recipes }
                               editAction={ this.props.editItem }

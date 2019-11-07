@@ -1,4 +1,3 @@
-
 export const LOCAL_STORAGE_KEYS = {
     RECIPES: 'recipe',
     DEMO: 'demo'

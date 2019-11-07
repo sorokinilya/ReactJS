@@ -1,36 +1,44 @@
 import {CANCEL_ACTION, DESCRIPTION_UPDATED, EditorAction, EditorState, NAME_UPDATED, SAVE_ACTON} from "./types";
 import {ADD_ACTION, FilterAction} from "../Filter/types";
+import {EDIT_ITEM, ListActionTypes} from "../List/types";
 
 const initialState: EditorState =  {
     isActive: false,
     id: 0,
     name: '',
     price: 0,
-    // img: string
+    img: 'https://st2.depositphotos.com/2065221/8317/i/950/depositphotos_83178492-stock-photo-wood-spoon-and-fork-with.jpg',
     recipyDesctiption: ''
 }
 
-export function editorReducer(state: EditorState = initialState, action: EditorAction | FilterAction) : EditorState {
+export function editorReducer(state: EditorState = initialState, action: EditorAction | FilterAction | ListActionTypes) : EditorState {
     switch (action.type) {
         case  SAVE_ACTON:
-            return {
-                ...state,
-                isActive: false
-            }
         case CANCEL_ACTION:
+            return initialState
+        case NAME_UPDATED:
             return {
                 ...state,
-                isActive: false
+                name: action.payload
             }
-            return state
-        case NAME_UPDATED:
-            return state
         case DESCRIPTION_UPDATED:
-            return  state
+            return {
+                ...state,
+                recipyDesctiption: action.payload
+            }
         case ADD_ACTION:
             return {
                 ...state,
                 isActive: true
+            }
+        case EDIT_ITEM:
+            return  {
+                isActive: true,
+                id: action.payload.id,
+                name: action.payload.name,
+                price: action.payload.price,
+                img: action.payload.img,
+                recipyDesctiption: action.payload.recipyDesctiption
             }
         default:
             return state

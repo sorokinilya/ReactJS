@@ -1,10 +1,11 @@
 import {EDIT_ITEM, ListActionTypes, ListItem, ListState, SELECT_ITEM} from "./types";
-import  "../../Business/StorageService"
-import storaService from "../../Business/StorageService";
-import {FilterAction, UPDATE_TEXT} from "../Filter/types";
+import "../../Business/StorageService"
+import storaService from "../../Business/StorageService"
+import {FilterAction, UPDATE_TEXT} from "../Filter/types"
+import {EditorAction, SAVE_ACTON} from "../Editor/types"
 
-const initialState: ListState = {
-    recipes: storaService.getRecipes().map(item => {
+function items(filter: string): ListItem[]  {
+   const value = storaService.getRecipes().map(item => {
         return {
             id: item.id,
             isSelected: false,
@@ -14,9 +15,19 @@ const initialState: ListState = {
             recipyDesctiption: item.recipyDesctiption
         }
     })
+    if (filter) {
+        return value.filter(item => {
+            return item.name.includes(filter) || item.recipyDesctiption.includes(filter)
+        })
+    }
+    return value
 }
 
-export function listReducer(state = initialState, action: ListActionTypes | FilterAction) : ListState {
+const initialState: ListState = {
+    recipes: items('')
+}
+
+export function listReducer(state = initialState, action: ListActionTypes | FilterAction | EditorAction) : ListState {
     switch (action.type) {
         case EDIT_ITEM: {
             return  state
@@ -24,28 +35,15 @@ export function listReducer(state = initialState, action: ListActionTypes | Filt
         case SELECT_ITEM: {
             return  state
         }
-        case UPDATE_TEXT: {
-            const items = storaService.getRecipes().map(item => {
-                return {
-                    id: item.id,
-                    isSelected: false,
-                    name: item.name,
-                    price: item.price,
-                    img: item.img,
-                    recipyDesctiption: item.recipyDesctiption
-                }
-            })
-            if (action.payload) {
-                return {
-                    ...state,
-                    recipes: items.filter(item => {
-                        return item.name.includes(action.payload) || item.recipyDesctiption.includes(action.payload)
-                    })
-                }
+        case SAVE_ACTON:
+            return  {
+                ...state,
+                recipes: items('')
             }
+        case UPDATE_TEXT: {
             return {
                 ...state,
-                recipes: items
+                recipes: items(action.payload)
             }
         }
         default:

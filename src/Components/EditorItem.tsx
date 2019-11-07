@@ -9,7 +9,7 @@ interface EditorProps {
 
     name: string
     price: number
-    // img: string
+    img: string
     recipyDesctiption: string
 
     updatedNameAction:(text: InputParam) => void
@@ -19,27 +19,37 @@ interface EditorProps {
 }
 
 
-export const EditorItem: React.FC<EditorProps> = ({ isActive, name, price, recipyDesctiption, updatedNameAction, updatedDescriptionAction, saveAction, closeAction }) => {
+export const EditorItem: React.FC<EditorProps> = ({
+                                                      isActive,
+                                                      name,
+                                                      price,
+                                                      img,
+                                                      recipyDesctiption,
+                                                      updatedNameAction,
+                                                      updatedDescriptionAction,
+                                                      saveAction,
+                                                      closeAction}) => {
     if (!isActive) {
-        return (<div> </div>)
+        return null
     }
     return (
         <div>
+            <img src={img} className="editorItemImg"/>
             <input
                 value={ name }
                 type="text"
                 placeholder="Enter name"
-                style={{margin: 10}}
                 onChange={ updatedNameAction }
             />
             <input
                 value={ recipyDesctiption }
                 type="text"
                 placeholder="Enter description"
-                style={{margin: 10}}
                 onChange={ updatedDescriptionAction }
             />
-            <Button className="a" onClick={ saveAction }>Close</Button>
-            <Button color="primary" className="b" onClick={ closeAction }>Save</Button>
+            <input type="file" id="imageFile" name='imageFile'/>
+
+            <Button className="a" onClick={ closeAction }>Close</Button>
+            <Button color="primary" className="b" onClick={ saveAction }>Save</Button>
             </div>)
 }
