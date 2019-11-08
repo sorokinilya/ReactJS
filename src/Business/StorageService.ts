@@ -53,7 +53,6 @@ export class StorageService {
         }
     }
 
-
     addRecipe(recipe: IStorageRecipe) {
         this.recopies.push(recipe);
         localStorage.setItem(LOCAL_STORAGE_KEYS.RECIPES, JSON.stringify(this.recopies));
