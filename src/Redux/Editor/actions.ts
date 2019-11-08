@@ -1,5 +1,5 @@
-import { SAVE_ACTON, CANCEL_ACTION, DESCRIPTION_UPDATED, NAME_UPDATED, EditorAction } from "./types";
-import {InputParam} from "../../Common/constants";
+import {SAVE_ACTON, CANCEL_ACTION, DESCRIPTION_UPDATED, NAME_UPDATED, EditorAction, IMAGE_UPDATED} from "./types";
+import {FileParam, InputParam} from "../../Common/constants";
 
 export function saveAction() {
     return {
@@ -10,6 +10,13 @@ export function saveAction() {
 export function closeAction() {
     return {
         type: CANCEL_ACTION
+    }
+}
+
+export function imageUpdatedAction(param: FileParam) {
+    return {
+        type: IMAGE_UPDATED,
+        payload: param
     }
 }
 

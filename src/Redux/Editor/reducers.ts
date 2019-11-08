@@ -1,6 +1,15 @@
-import {CANCEL_ACTION, DESCRIPTION_UPDATED, EditorAction, EditorState, NAME_UPDATED, SAVE_ACTON} from "./types";
+import {
+    CANCEL_ACTION,
+    DESCRIPTION_UPDATED,
+    EditorAction,
+    EditorState,
+    IMAGE_UPDATED,
+    NAME_UPDATED,
+    SAVE_ACTON
+} from "./types";
 import {ADD_ACTION, FilterAction} from "../Filter/types";
 import {EDIT_ITEM, ListActionTypes} from "../List/types";
+import {FileParam, InputParam} from "../../Common/constants";
 
 const initialState: EditorState =  {
     isActive: false,
@@ -25,6 +34,18 @@ export function editorReducer(state: EditorState = initialState, action: EditorA
             return {
                 ...state,
                 recipyDesctiption: action.payload
+            }
+        case IMAGE_UPDATED:
+            let files: FileParam = action.payload
+            if (!files || files.length < 1)  {
+                return state
+            }
+            let reader = new FileReader()
+            reader.readAsDataURL(files[0])
+            let a = reader.result
+            return {
+                ...state,
+                img: ""
             }
         case ADD_ACTION:
             return {

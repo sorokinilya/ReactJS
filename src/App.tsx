@@ -11,18 +11,20 @@ import { connect } from "react-redux";
 import {editItem, selectItem} from "./Redux/List/actions";
 import {EditorItem} from "./Components/EditorItem";
 import {EditorState} from "./Redux/Editor/types";
-import {closeAction, saveAction, nameUpdatedAction, descriptionUpdatedAction} from "./Redux/Editor/actions";
+import {closeAction, saveAction, nameUpdatedAction, descriptionUpdatedAction, imageUpdatedAction} from "./Redux/Editor/actions";
 
 interface AppProps {
-    list: ListState;
-    filter: FilterState;
+    list: ListState
+    filter: FilterState
     editor: EditorState
     searchAction: typeof searchAction
     updateText: typeof updateText
     addAction: typeof addAction
+
     editItem: typeof editItem
     selectItem: typeof selectItem
 
+    imageUpdatedAction: typeof imageUpdatedAction
     saveAction: typeof saveAction
     closeAction: typeof closeAction
     nameUpdatedAction: typeof nameUpdatedAction
@@ -43,7 +45,8 @@ class App extends React.Component<AppProps> {
                             name={ this.props.editor.name }
                             price={ this.props.editor.price }
                             img={ this.props.editor.img}
-                            recipyDesctiption={ this.props.editor.recipyDesctiption}
+                            recipyDesctiption={ this.props.editor.recipyDesctiption }
+                            uploadedImageAction={ this.props.imageUpdatedAction }
                             updatedNameAction={ this.props.nameUpdatedAction }
                             updatedDescriptionAction={ this.props.descriptionUpdatedAction }
                             saveAction={ this.props.saveAction }
@@ -68,7 +71,7 @@ export default connect(
     mapStateToProps,
     {  searchAction, updateText, addAction,
         editItem, selectItem,
-        saveAction, closeAction, nameUpdatedAction, descriptionUpdatedAction
+        saveAction, closeAction, nameUpdatedAction, descriptionUpdatedAction, imageUpdatedAction
     }
 )(App);
 

@@ -1,8 +1,8 @@
 
 import React from "react";
 import Button from "@material-ui/core/Button";
-import {InputParam } from "../Common/constants"
 import  "./editor.css"
+import {FileParam, InputParam} from "../Common/constants"
 
 
 interface EditorProps {
@@ -12,7 +12,7 @@ interface EditorProps {
     price: number
     img: string
     recipyDesctiption: string
-
+    uploadedImageAction:(file: FileParam) => void
     updatedNameAction:(text: InputParam) => void
     updatedDescriptionAction:(text: InputParam) => void
     saveAction:() => void
@@ -26,6 +26,7 @@ export const EditorItem: React.FC<EditorProps> = ({
                                                       price,
                                                       img,
                                                       recipyDesctiption,
+                                                      uploadedImageAction,
                                                       updatedNameAction,
                                                       updatedDescriptionAction,
                                                       saveAction,
@@ -38,7 +39,7 @@ export const EditorItem: React.FC<EditorProps> = ({
             <div className="EditorMain">
                 <div className="EditorFieldImg">
                     <img src={img} className="editorItemImg"/>
-                    <input type="file" id="imageFile" name='imageFile'/>
+                    <input type="file" id="imageFile" name='imageFile' onChange={ e => uploadedImageAction(e.target.files) }/>
                     <div className="EditorButtons">
                         <Button className="a" onClick={ closeAction }>Close</Button>
                         <Button color="primary" className="b" onClick={ saveAction }>Save</Button>
@@ -52,9 +53,11 @@ export const EditorItem: React.FC<EditorProps> = ({
                         onChange={ updatedNameAction }
                     />
                     <textarea
-                        placeholder="Write something..">
+                        placeholder="Write something.." onChange={ updatedDescriptionAction }>
+                        { recipyDesctiption }
                     </textarea>
                 </div>
             </div>
         </div>)
+
 }
