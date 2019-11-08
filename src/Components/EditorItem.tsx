@@ -2,6 +2,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import {InputParam } from "../Common/constants"
+import  "./editor.css"
 
 
 interface EditorProps {
@@ -33,23 +34,27 @@ export const EditorItem: React.FC<EditorProps> = ({
         return null
     }
     return (
-        <div>
-            <img src={img} className="editorItemImg"/>
-            <input
-                value={ name }
-                type="text"
-                placeholder="Enter name"
-                onChange={ updatedNameAction }
-            />
-            <input
-                value={ recipyDesctiption }
-                type="text"
-                placeholder="Enter description"
-                onChange={ updatedDescriptionAction }
-            />
-            <input type="file" id="imageFile" name='imageFile'/>
-
-            <Button className="a" onClick={ closeAction }>Close</Button>
-            <Button color="primary" className="b" onClick={ saveAction }>Save</Button>
-            </div>)
+        <div className="EditorBack">
+            <div className="EditorMain">
+                <div className="EditorFieldImg">
+                    <img src={img} className="editorItemImg"/>
+                    <input type="file" id="imageFile" name='imageFile'/>
+                    <div className="EditorButtons">
+                        <Button className="a" onClick={ closeAction }>Close</Button>
+                        <Button color="primary" className="b" onClick={ saveAction }>Save</Button>
+                    </div>
+                </div>
+                <div className="EditorField">
+                    <input
+                        value={ name }
+                        type="text"
+                        placeholder="Enter name"
+                        onChange={ updatedNameAction }
+                    />
+                    <textarea
+                        placeholder="Write something..">
+                    </textarea>
+                </div>
+            </div>
+        </div>)
 }
