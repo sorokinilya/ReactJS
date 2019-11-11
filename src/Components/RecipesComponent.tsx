@@ -18,7 +18,6 @@ export const RecipesComponent: React.FC<SearchProps> = ({ items, selectAction,  
     );
 };
 
-
 const  RecipeItem = (recipe: ListItem, selectItem: () => void, editItem: () => void)  => {
     let classes = ['listItem']
     let button = null

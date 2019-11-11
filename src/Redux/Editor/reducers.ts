@@ -36,15 +36,9 @@ export function editorReducer(state: EditorState = initialState, action: EditorA
                 recipyDesctiption: action.payload
             }
         case IMAGE_UPDATED:
-            // let files: FileParam = action.payload
-            // if (!files || files.length < 1)  {
-            //     return state
-            // }
-            // let reader = new FileReader()
-            // reader.readAsDataURL(files[0])
-            // let a = reader.result
             return {
-                ...state
+                ...state,
+                img: action.payload
             }
         case ADD_ACTION:
             return {

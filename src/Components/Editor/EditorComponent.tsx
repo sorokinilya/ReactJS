@@ -3,6 +3,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import "./editor.css"
 import {FileParam, InputParam} from "../../Common/constants"
+import {imageUpdatedAction} from "../../Redux/Editor/actions";
 
 
 interface EditorProps {
@@ -18,7 +19,6 @@ interface EditorProps {
     saveAction:() => void
     closeAction:() => void
 }
-
 
 export const EditorComponent: React.FC<EditorProps> = ({
                                                       isActive,
@@ -39,7 +39,18 @@ export const EditorComponent: React.FC<EditorProps> = ({
             <div className="EditorMain">
                 <div className="EditorFieldImg">
                     <img src={img} className="editorItemImg" alt='recipe image' />
-                    <input type="file" id="imageFile" name='imageFile' onChange={ e => uploadedImageAction(e.target.files) }/>
+                    <input type="file" id="imageFile" name='imageFile' onChange={ e =>  {
+                        if (e.target.files && e.target.files[0]) {
+                            let reader = new FileReader()
+                            reader.onload = (event) => { // called once readAsDataURL is completed
+                                if (event.target && event.target.result) {
+                                    let image = event.target.result as string
+                                    uploadedImageAction(image)
+                                }
+                            }
+                            reader.readAsDataURL(e.target.files[0])
+                        }
+                    }}/>
                     <div className="EditorButtons">
                         <Button className="a" onClick={ closeAction }>Close</Button>
                         <Button color="primary" className="b" onClick={ saveAction }>Save</Button>

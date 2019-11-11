@@ -11,7 +11,7 @@ export interface IStorageRecipe {
     recipyDesctiption: string
 }
 
-export class StorageService {
+class StorageService {
 
     private  recopies: IStorageRecipe[] = [];
 
