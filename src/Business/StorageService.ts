@@ -54,7 +54,10 @@ export class StorageService {
     }
 
     addRecipe(recipe: IStorageRecipe) {
-        this.recopies.push(recipe);
+        const items = this.recopies.filter(item => {
+            return item.id != recipe.id
+        })
+        this.recopies = [recipe].concat(items)
         localStorage.setItem(LOCAL_STORAGE_KEYS.RECIPES, JSON.stringify(this.recopies));
     }
 
@@ -76,6 +79,5 @@ export class StorageService {
 
 }
 
-
-const storaService = new StorageService();
+const storaService = new StorageService()
 export default storaService
