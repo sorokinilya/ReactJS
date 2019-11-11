@@ -20,13 +20,17 @@ export const RecipesComponent: React.FC<SearchProps> = ({ items, selectAction,  
 };
 
 
-const  RecipeItem = (recipe: ListItem, selectItem: (id: Number) => void, editItem: (id: Number) => void)  => {
+const  RecipeItem = (recipe: ListItem, selectItem: () => void, editItem: () => void)  => {
     let classes = ['listItem']
+    let button = null
     if (recipe.isSelected) {
         classes.push('Selected')
+        button = (<Button variant="contained" color="primary" onClick={ editItem }>
+            Edit
+            </Button>)
     }
     return (
-        <div className={classes.join(' ')} onClick={ ()=> selectItem(recipe.id) }>
+        <div className={classes.join(' ')} onClick={ selectItem }>
             <div className="container clearfix wholeField">
                 <div className="listItemTitle"> {recipe.name}</div>
                 <div className="mainArticle">
@@ -35,9 +39,7 @@ const  RecipeItem = (recipe: ListItem, selectItem: (id: Number) => void, editIte
                     </div>
                     <div className="listItemDescription"> {recipe.recipyDesctiption}</div>
                 </div>
-                <Button variant="contained" color="primary" onClick={ () => editItem(recipe.id) }>
-                    Edit
-                </Button>
+                { button }
             </div>
         </div>
     )

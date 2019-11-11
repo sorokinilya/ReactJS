@@ -33,7 +33,14 @@ export function listReducer(state = initialState, action: ListActionTypes | Filt
             return  state
         }
         case SELECT_ITEM: {
-            return  state
+            let items =  state.recipes
+            items.forEach(item => {
+                item.isSelected = item.id == action.payload.id
+            })
+            return {
+                ...state,
+                recipes: items
+            }
         }
         case SAVE_ACTON:
             return  {
