@@ -4,12 +4,12 @@ import './index.css'
 import { AppState } from './Redux/index'
 import { ListState} from "./Redux/List/types";
 import { FilterState} from "./Redux/Filter/types";
-import { SearchInterface } from "./Components/SearchItem"
-import { RecipeList } from "./Components/RecipeItem"
+import { SearchInterface } from "./Components/SearchComponent"
+import { RecipesComponent } from "./Components/RecipesComponent"
 import { updateText, addAction, searchAction } from "./Redux/Filter/actions";
 import { connect } from "react-redux";
 import {editItem, selectItem} from "./Redux/List/actions";
-import {EditorItem} from "./Components/EditorItem";
+import {EditorComponent} from "./Components/Editor/EditorComponent";
 import {EditorState} from "./Redux/Editor/types";
 import {closeAction, saveAction, nameUpdatedAction, descriptionUpdatedAction, imageUpdatedAction} from "./Redux/Editor/actions";
 
@@ -41,18 +41,18 @@ class App extends React.Component<AppProps> {
                                  search={ this.props.searchAction }
                                  add={ this.props.addAction }/>
 
-                <EditorItem isActive={ this.props.editor.isActive }
-                            name={ this.props.editor.name }
-                            price={ this.props.editor.price }
-                            img={ this.props.editor.img}
-                            recipyDesctiption={ this.props.editor.recipyDesctiption }
-                            uploadedImageAction={ this.props.imageUpdatedAction }
-                            updatedNameAction={ this.props.nameUpdatedAction }
-                            updatedDescriptionAction={ this.props.descriptionUpdatedAction }
-                            saveAction={ this.props.saveAction }
-                            closeAction={this.props.closeAction } />
+                <EditorComponent isActive={ this.props.editor.isActive }
+                                 name={ this.props.editor.name }
+                                 price={ this.props.editor.price }
+                                 img={ this.props.editor.img}
+                                 recipyDesctiption={ this.props.editor.recipyDesctiption }
+                                 uploadedImageAction={ this.props.imageUpdatedAction }
+                                 updatedNameAction={ this.props.nameUpdatedAction }
+                                 updatedDescriptionAction={ this.props.descriptionUpdatedAction }
+                                 saveAction={ this.props.saveAction }
+                                 closeAction={this.props.closeAction } />
 
-                  <RecipeList items={this.props.list.recipes }
+                  <RecipesComponent items={this.props.list.recipes }
                               editAction={ this.props.editItem }
                               selectAction={ this.props.selectItem }/>
             </div>

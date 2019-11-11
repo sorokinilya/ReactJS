@@ -1,4 +1,4 @@
-import { SEARCH_ACTION, UPDATE_TEXT, ADD_ACTION, FilterAction } from "./types";
+import { CLEAR_ACTION, UPDATE_TEXT, ADD_ACTION, FilterAction } from "./types";
 import {InputParam} from "../../Common/constants";
 
 export function updateText(param: InputParam): FilterAction {
@@ -10,7 +10,7 @@ export function updateText(param: InputParam): FilterAction {
 
 export function searchAction(): FilterAction {
     return {
-        type: SEARCH_ACTION
+        type: CLEAR_ACTION
     }
 }
 

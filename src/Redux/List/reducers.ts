@@ -1,7 +1,7 @@
 import {EDIT_ITEM, ListActionTypes, ListItem, ListState, SELECT_ITEM} from "./types";
 import "../../Business/StorageService"
 import storaService from "../../Business/StorageService"
-import {FilterAction, UPDATE_TEXT} from "../Filter/types"
+import {CLEAR_ACTION, FilterAction, UPDATE_TEXT} from "../Filter/types"
 import {EditorAction, SAVE_ACTON} from "../Editor/types"
 
 function items(filter: string): ListItem[]  {
@@ -40,6 +40,11 @@ export function listReducer(state = initialState, action: ListActionTypes | Filt
                 ...state,
                 recipes: items('')
             }
+        case CLEAR_ACTION:
+            return {
+                ...state,
+                recipes: items('')
+        }
         case UPDATE_TEXT: {
             return {
                 ...state,

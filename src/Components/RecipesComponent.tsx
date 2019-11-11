@@ -8,7 +8,7 @@ interface SearchProps {
     editAction: (item: ListItem) => void
 }
 
-export const RecipeList: React.FC<SearchProps> = ({ items, selectAction,  editAction }) => {
+export const RecipesComponent: React.FC<SearchProps> = ({ items, selectAction,  editAction }) => {
     return (
       <div> {
           items.map( (item) =>
@@ -20,7 +20,7 @@ export const RecipeList: React.FC<SearchProps> = ({ items, selectAction,  editAc
 };
 
 
-const  RecipeItem = (recipe: ListItem,  selectItem: (id: Number) => void, editItem: (id: Number) => void)  => {
+const  RecipeItem = (recipe: ListItem, selectItem: (id: Number) => void, editItem: (id: Number) => void)  => {
     let classes = ['listItem']
     if (recipe.isSelected) {
         classes.push('Selected')

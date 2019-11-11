@@ -1,4 +1,4 @@
-import {ADD_ACTION, FilterAction, FilterState, SEARCH_ACTION, UPDATE_TEXT} from "./types"
+import {ADD_ACTION, FilterAction, FilterState, CLEAR_ACTION, UPDATE_TEXT} from "./types"
 import {EditorAction, SAVE_ACTON} from "../Editor/types"
 
 const initialState: FilterState = {
@@ -8,8 +8,11 @@ const initialState: FilterState = {
 
 export function filterReducer(state: FilterState = initialState, action: FilterAction | EditorAction) : FilterState {
         switch (action.type) {
-            case SEARCH_ACTION:
-                return  state;
+            case CLEAR_ACTION:
+                return  {
+                    ...state,
+                    searchString: ''
+                }
             case UPDATE_TEXT:
                 return  {
                     ...state,

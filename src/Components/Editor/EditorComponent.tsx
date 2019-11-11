@@ -1,8 +1,8 @@
 
 import React from "react";
 import Button from "@material-ui/core/Button";
-import  "./editor.css"
-import {FileParam, InputParam} from "../Common/constants"
+import "./editor.css"
+import {FileParam, InputParam} from "../../Common/constants"
 
 
 interface EditorProps {
@@ -20,7 +20,7 @@ interface EditorProps {
 }
 
 
-export const EditorItem: React.FC<EditorProps> = ({
+export const EditorComponent: React.FC<EditorProps> = ({
                                                       isActive,
                                                       name,
                                                       price,
