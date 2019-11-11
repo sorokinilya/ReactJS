@@ -55,7 +55,7 @@ export class StorageService {
 
     addRecipe(recipe: IStorageRecipe) {
         const items = this.recopies.filter(item => {
-            return item.id != recipe.id
+            return item.id !== recipe.id
         })
         this.recopies = [recipe].concat(items)
         localStorage.setItem(LOCAL_STORAGE_KEYS.RECIPES, JSON.stringify(this.recopies));

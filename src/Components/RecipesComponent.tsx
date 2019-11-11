@@ -11,8 +11,7 @@ interface SearchProps {
 export const RecipesComponent: React.FC<SearchProps> = ({ items, selectAction,  editAction }) => {
     return (
       <div> {
-          items.map( (item) =>
-              <div>{ RecipeItem(item, ()=>{ selectAction( item )  }, () => { editAction(item ) } ) } </div>
+          items.map( (item) => RecipeItem(item, ()=>{ selectAction( item )  }, () => { editAction(item ) } )
           )
       }
       </div>
@@ -30,12 +29,12 @@ const  RecipeItem = (recipe: ListItem, selectItem: () => void, editItem: () => v
             </Button>)
     }
     return (
-        <div className={classes.join(' ')} onClick={ selectItem }>
+        <div className={classes.join(' ')} onClick={ selectItem } key={ recipe.id }>
             <div className="container clearfix wholeField">
                 <div className="listItemTitle"> {recipe.name}</div>
                 <div className="mainArticle">
                     <div className="recipeImage">
-                        <img src={recipe.img} className="listItemImg"/>
+                        <img src={recipe.img} className="listItemImg" alt={ recipe.name }/>
                     </div>
                     <div className="listItemDescription"> {recipe.recipyDesctiption}</div>
                 </div>

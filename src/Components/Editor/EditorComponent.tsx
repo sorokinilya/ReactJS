@@ -38,7 +38,7 @@ export const EditorComponent: React.FC<EditorProps> = ({
         <div className="EditorBack">
             <div className="EditorMain">
                 <div className="EditorFieldImg">
-                    <img src={img} className="editorItemImg"/>
+                    <img src={img} className="editorItemImg" alt='recipe image' />
                     <input type="file" id="imageFile" name='imageFile' onChange={ e => uploadedImageAction(e.target.files) }/>
                     <div className="EditorButtons">
                         <Button className="a" onClick={ closeAction }>Close</Button>

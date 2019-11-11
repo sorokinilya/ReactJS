@@ -1,4 +1,4 @@
-import { Middleware, MiddlewareAPI, Dispatch } from "redux"
+import { Middleware, Dispatch } from "redux"
 import {EditorState, SAVE_ACTON} from "./Editor/types"
 import storaService from "../Business/StorageService";
 
@@ -8,7 +8,7 @@ export const editorMiddleware: Middleware<{}> = api => (
         switch (action.type) {
         case SAVE_ACTON: {
             const model: EditorState = api.getState().editorReducer
-            if  (model.id == 0) {
+            if  (model.id === 0) {
                 const ids: number[] = storaService.getRecipes().map(val => (
                     val.id
                 ));

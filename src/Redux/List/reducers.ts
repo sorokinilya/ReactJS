@@ -35,7 +35,7 @@ export function listReducer(state = initialState, action: ListActionTypes | Filt
         case SELECT_ITEM: {
             let items =  state.recipes
             items.forEach(item => {
-                item.isSelected = item.id == action.payload.id
+                item.isSelected = item.id === action.payload.id
             })
             return {
                 ...state,
