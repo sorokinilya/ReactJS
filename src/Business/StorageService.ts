@@ -27,7 +27,7 @@ class StorageService {
 
         if (this.showDemo()) {
             this.setShowDemo(false);
-            const items: IStorageRecipe[] = [{
+        /*    const items: IStorageRecipe[] = [{
                 id: 1,
                 name: "Borscht",
                 price: 10,
@@ -49,7 +49,7 @@ class StorageService {
                 }];
              items.forEach(value => {
                  this.addRecipe(value)
-             });
+             });*/
         }
     }
 
